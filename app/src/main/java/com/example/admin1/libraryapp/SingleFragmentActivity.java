@@ -16,7 +16,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
 
-        Fragment fragment = fm.findFragmentById(R.id.articulo_container);
+        Fragment fragment = fm.findFragmentById(R.id.articulo_fragment);
 
         if(fragment == null){
             fragment = createFragment();
