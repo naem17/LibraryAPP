@@ -85,6 +85,13 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
                 .findViewById(R.id.titulo_grupo);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return convertView;
     }
 

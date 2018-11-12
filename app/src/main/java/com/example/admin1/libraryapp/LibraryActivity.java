@@ -37,6 +37,8 @@ public class LibraryActivity extends AppCompatActivity {
                         expandableListTitle.get(groupPosition) + " List Expanded.",
                         Toast.LENGTH_SHORT).show();
             }
+
+
         });
 
         expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
