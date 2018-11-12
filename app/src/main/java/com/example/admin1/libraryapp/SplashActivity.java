@@ -32,6 +32,7 @@ public class SplashActivity extends Activity {
         mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
         mProgressBar.setVisibility(mProgressBar.VISIBLE);
 
+
             //set GifImageView resources
             try {
                 InputStream inputStream = getAssets().open("logoFinal.gif");
