@@ -1,16 +1,20 @@
 package com.example.admin1.libraryapp;
 
-
 import java.util.HashMap;
 import java.util.List;
+
+import android.arch.lifecycle.AndroidViewModel;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AdaptadorLista extends BaseExpandableListAdapter {
 
@@ -48,6 +52,16 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
         TextView expandedListTextView = (TextView) convertView
                 .findViewById(R.id.nombre_articulo);
         expandedListTextView.setText(expandedListText);
+
+        final ImageView carrito = (ImageView) convertView.findViewById(R.id.icono_carrito);
+
+        carrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Click en el carrito", Toast.LENGTH_SHORT).show();
+                carrito.setImageResource(android.R.drawable.ic_delete);
+            }
+        });
         return convertView;
     }
 
@@ -86,12 +100,6 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         return convertView;
     }
 
@@ -104,4 +112,5 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int listPosition, int expandedListPosition) {
         return true;
     }
+
 }

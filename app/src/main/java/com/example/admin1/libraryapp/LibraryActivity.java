@@ -1,5 +1,7 @@
 package com.example.admin1.libraryapp;
 
+import android.app.Application;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -62,11 +64,13 @@ public class LibraryActivity extends AppCompatActivity {
                                 + " -> "
                                 + expandableListDetail.get(
                                 expandableListTitle.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT
+                                childPosition)+ "  "+id, Toast.LENGTH_SHORT
                 ).show();
                 return false;
             }
         });
+
     }
+
 
 }
