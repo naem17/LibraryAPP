@@ -28,7 +28,7 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.splash);
 
-        mGifImageView = (GifImageView)findViewById(R.id.gifImageView);
+        mGifImageView = (GifImageView) findViewById(R.id.gifImageView);
         mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
         mProgressBar.setVisibility(mProgressBar.VISIBLE);
 

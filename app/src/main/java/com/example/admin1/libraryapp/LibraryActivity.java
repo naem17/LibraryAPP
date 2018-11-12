@@ -1,11 +1,8 @@
 package com.example.admin1.libraryapp;
 
-import android.app.Application;
-import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -22,12 +19,18 @@ public class LibraryActivity extends AppCompatActivity {
     List<String> expandableListTitle;
     HashMap<String, List<String>> expandableListDetail;
 
+    ArrayList<Libro> libros = new ArrayList<Libro>();
+    ArrayList<Prensa> periodicos = new ArrayList<Prensa>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        loadProducts();
+
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
-        expandableListDetail = ListasCategorias.getData();
+        expandableListDetail = ListasCategorias.getData(libros,periodicos);
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new AdaptadorLista(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
@@ -58,6 +61,11 @@ public class LibraryActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
+
+
+
+                Log.d("CARRITO CLICK EVENT", String.valueOf(id)+" --- "+String.valueOf(groupPosition)+" --- "+String.valueOf(childPosition));
+                expandableListAdapter.getChild(groupPosition,childPosition);
                 Toast.makeText(
                         getApplicationContext(),
                         expandableListTitle.get(groupPosition)
@@ -70,6 +78,17 @@ public class LibraryActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loadProducts(){
+
+        libros.add(new Libro(10.0, "Primer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
+        libros.add(new Libro(10.0, "Segundo Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
+        libros.add(new Libro(10.0, "Tercer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
+
+        periodicos.add(new Prensa(10.0, "Primer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario", true, "De pruebas"));
+        periodicos.add(new Prensa(10.0, "Primer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario",true, "De pruebas"));
+        periodicos.add(new Prensa(10.0, "Primer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario",true, "De pruebas"));
     }
 
 
