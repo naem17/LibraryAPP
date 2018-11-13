@@ -1,9 +1,12 @@
 package com.example.admin1.libraryapp;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -78,8 +81,19 @@ public class LibraryActivity extends AppCompatActivity {
             }
         });
 
+// TODO: 13/11/2018  view pager. (sets the layout created as its content view)
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.articulo_fragment); //not sure about this
+            ViewPager vpPager = (ViewPager) findViewById(R.id.activity_library_pager);
+        }
+        
     }
+    //// TODO: 13/11/2018 le paso el articulo fragment para que se muestre en el view 
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.articulo_fragment, container, false);
 
+        
     private void loadProducts(){
 
         libros.add(new Libro(10.0, "Primer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
