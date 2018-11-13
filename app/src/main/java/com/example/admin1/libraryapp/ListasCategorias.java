@@ -5,25 +5,26 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ListasCategorias {
-    public static HashMap<String, List<String>> getData(ArrayList<Libro> listaLibros, ArrayList<Prensa> listaPeriodicos) {
+
+    public static HashMap<String, List<String>> getData(ArrayList<Object> articulos) {
+
         HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
 
-        List<String> libro = new ArrayList<String>();
+        HashMap<String, ArrayList<String>> categorias = new HashMap<String, ArrayList<String>>();
 
-        for (Libro art: listaLibros) {
-            libro.add(art.getNombre());
+        for (Object art:  articulos) {
+            Articulos articulo = (Articulos) art;
+            String tipo=art.getClass().getSimpleName();
+            if(!categorias.containsKey(tipo)){
+                categorias.put(tipo, new ArrayList<String>());
+            }
+            categorias.get(tipo).add(articulo.getNombre());
         }
 
-        List<String> periodico = new ArrayList<String>();
-        for (Prensa art: listaPeriodicos) {
-            periodico.add(art.getNombre());
+        for(String lista: categorias.keySet()){
+            expandableListDetail.put(lista.toUpperCase(), categorias.get(lista));
         }
 
-        List<String> revista = new ArrayList<String>();
-
-        expandableListDetail.put("LIBROS", libro);
-        expandableListDetail.put("PERIODICOS", periodico);
-        //expandableListDetail.put("REVISTAS", revista);
         return expandableListDetail;
     }
 }
