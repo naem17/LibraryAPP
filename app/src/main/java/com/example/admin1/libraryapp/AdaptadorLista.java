@@ -21,7 +21,6 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
     private Context context;
     private List<String> expandableListTitle;
     private HashMap<String, List<String>> expandableListDetail;
-    private final String CARRITO = "Carrito.Current.Resource";
 
     public AdaptadorLista(Context context, List<String> expandableListTitle,
                                        HashMap<String, List<String>> expandableListDetail) {
