@@ -45,12 +45,10 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
                              boolean isLastChild, View convertView, ViewGroup parent) {
         String expandedListText = (String) getChild(listPosition, expandedListPosition);
         if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) this.context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.articulo_fragment, null);
         }
-        TextView expandedListTextView = (TextView) convertView
-                .findViewById(R.id.nombre_articulo);
+        TextView expandedListTextView = (TextView) convertView.findViewById(R.id.nombre_articulo);
         expandedListTextView.setText(expandedListText);
 
         final ImageView carrito = (ImageView) convertView.findViewById(R.id.icono_carrito);
@@ -73,7 +71,6 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
                         carrito.setTag(android.R.drawable.ic_delete);
                         break;
                 }
-                //carrito.setImageResource(android.R.drawable.ic_delete);
             }
         });
 
