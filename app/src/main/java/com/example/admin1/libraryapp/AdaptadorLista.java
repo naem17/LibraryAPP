@@ -39,7 +39,7 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int listPosition, final int expandedListPosition,
+    public View getChildView(final int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
         Log.d("CHILD_TYPE", getChild(listPosition, expandedListPosition).getClass().getSimpleName());
         Articulos art = (Articulos) getChild(listPosition, expandedListPosition);
@@ -53,25 +53,17 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
         expandedListTextView.setText(expandedListText);
 
         final ImageView carrito = (ImageView) convertView.findViewById(R.id.icono_carrito);
-        carrito.setTag(android.R.drawable.ic_input_add);
+        carrito.setImageResource(android.R.drawable.ic_input_add);
 
         carrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Integer integer = (Integer) carrito.getTag();
-                integer = integer == null ? 0 : integer;
+                //TODO: Arreglar este desastre
+                LibraryActivity.articulos.get(LibraryActivity.articulos.indexOf(getChild(listPosition, expandedListPosition))).getClass().getSimpleName();
+                getChild(listPosition, expandedListPosition);
 
-                switch(integer) {
-                    case android.R.drawable.ic_delete:
-                        carrito.setImageResource(android.R.drawable.ic_input_add);
-                        carrito.setTag(android.R.drawable.ic_input_add);
-                        break;
-                    case android.R.drawable.ic_input_add:
-                        carrito.setImageResource(android.R.drawable.ic_delete);
-                        carrito.setTag(android.R.drawable.ic_delete);
-                        break;
-                }
+                Log.d("LIBRARY_CARRITO_SIZE", String.valueOf(LibraryActivity.carrito.size()));
             }
         });
 

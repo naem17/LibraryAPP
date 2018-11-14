@@ -17,8 +17,7 @@ public class LibraryActivity extends AppCompatActivity {
     List<String> expandableListTitle;
     HashMap<String, ArrayList<Object>> expandableListDetail;
 
-    ArrayList<Object> articulos = new ArrayList<Object>();
-    public static ArrayList<Object> carrito = new ArrayList<Object>();
+    public static ArrayList<Object> articulos = new ArrayList<Object>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

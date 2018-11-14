@@ -20,6 +20,7 @@ public class Articulos {
         this.editorial = editorial;
         this.idioma = idioma;
         this.genero = genero;
+        this.enListaCompra = false;
     }
 
 
