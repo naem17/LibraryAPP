@@ -1,29 +1,27 @@
 package com.example.admin1.libraryapp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import android.nfc.Tag;
-import android.util.Log;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
-import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AdaptadorLista extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    private HashMap<String, ArrayList<Object>> expandableListDetail;
 
     public AdaptadorLista(Context context, List<String> expandableListTitle,
-                                       HashMap<String, List<String>> expandableListDetail) {
+                          HashMap<String, ArrayList<Object>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -43,7 +41,10 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        String expandedListText = (String) getChild(listPosition, expandedListPosition);
+        Log.d("CHILD_TYPE", getChild(listPosition, expandedListPosition).getClass().getSimpleName());
+        Articulos art = (Articulos) getChild(listPosition, expandedListPosition);
+        String expandedListText = art.getNombre();
+        Log.d("CHILD_TITLE", expandedListText);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.articulo_fragment, null);
@@ -102,6 +103,7 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         String listTitle = (String) getGroup(listPosition);
+        Log.d("GROUP_TITLE", listTitle);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);

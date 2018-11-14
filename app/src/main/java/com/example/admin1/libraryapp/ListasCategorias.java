@@ -2,29 +2,23 @@ package com.example.admin1.libraryapp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ListasCategorias {
 
-    public static HashMap<String, List<String>> getData(ArrayList<Object> articulos) {
 
-        HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
+    public static HashMap<String, ArrayList<Object>> getData(ArrayList<Object> articulos) {
 
-        HashMap<String, ArrayList<String>> categorias = new HashMap<String, ArrayList<String>>();
+        HashMap<String, ArrayList<Object>> categorias = new HashMap<String, ArrayList<Object>>();
 
         for (Object art:  articulos) {
             Articulos articulo = (Articulos) art;
             String tipo=art.getClass().getSimpleName();
             if(!categorias.containsKey(tipo)){
-                categorias.put(tipo, new ArrayList<String>());
+                categorias.put(tipo, new ArrayList<Object>());
             }
-            categorias.get(tipo).add(articulo.getNombre());
+            categorias.get(tipo).add(articulo);
         }
 
-        for(String lista: categorias.keySet()){
-            expandableListDetail.put(lista.toUpperCase(), categorias.get(lista));
-        }
-
-        return expandableListDetail;
+        return categorias;
     }
 }
