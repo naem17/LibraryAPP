@@ -20,6 +20,7 @@ public class Articulos {
         this.editorial = editorial;
         this.idioma = idioma;
         this.genero = genero;
+        this.enListaCompra = false;
     }
 
 
@@ -61,6 +62,10 @@ public class Articulos {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public void setEnListaCompra(boolean enListaCompra) {
+        this.enListaCompra = enListaCompra;
     }
 
 }
