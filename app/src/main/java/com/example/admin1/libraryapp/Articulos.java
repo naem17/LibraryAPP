@@ -64,4 +64,8 @@ public class Articulos {
         this.precio = precio;
     }
 
+    public void setEnListaCompra(boolean enListaCompra) {
+        this.enListaCompra = enListaCompra;
+    }
+
 }
