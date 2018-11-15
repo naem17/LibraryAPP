@@ -11,7 +11,9 @@ public class Articulos {
     private static Integer unidadesEnCompra;
     private boolean enListaCompra;
 
-    public Articulos(Double precio, String nombre, String fecha, String editorial, String idioma, String genero) {
+
+    public Articulos( Double precio, String nombre, String fecha, String editorial, String idioma, String genero) {
+
         this.precio = precio;
         this.nombre = nombre;
         this.fecha = fecha;
@@ -19,6 +21,7 @@ public class Articulos {
         this.idioma = idioma;
         this.genero = genero;
     }
+
 
     public Double getPrecio() {
         return precio;
@@ -59,4 +62,5 @@ public class Articulos {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
+
 }
