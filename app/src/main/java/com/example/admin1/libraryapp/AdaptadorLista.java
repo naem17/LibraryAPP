@@ -1,30 +1,27 @@
 package com.example.admin1.libraryapp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import android.nfc.Tag;
-import android.util.Log;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
-import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AdaptadorLista extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
-    private final String CARRITO = "Carrito.Current.Resource";
+    private HashMap<String, ArrayList<Object>> expandableListDetail;
 
     public AdaptadorLista(Context context, List<String> expandableListTitle,
-                                       HashMap<String, List<String>> expandableListDetail) {
+                          HashMap<String, ArrayList<Object>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -42,39 +39,57 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int listPosition, final int expandedListPosition,
+    public View getChildView(final int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        String expandedListText = (String) getChild(listPosition, expandedListPosition);
+        Log.d("CHILD_TYPE", getChild(listPosition, expandedListPosition).getClass().getSimpleName());
+        Articulos art = (Articulos) getChild(listPosition, expandedListPosition);
+        final String expandedListText = art.getNombre();
+        Log.d("CHILD_TITLE", expandedListText);
         if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) this.context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.articulo_fragment, null);
         }
-        TextView expandedListTextView = (TextView) convertView
-                .findViewById(R.id.nombre_articulo);
+        TextView expandedListTextView = (TextView) convertView.findViewById(R.id.nombre_articulo);
         expandedListTextView.setText(expandedListText);
 
         final ImageView carrito = (ImageView) convertView.findViewById(R.id.icono_carrito);
-        carrito.setTag(android.R.drawable.ic_input_add);
+
+        boolean isEnLista = ((Articulos) getChild(listPosition, expandedListPosition)).isEnListaCompra();
+        ((Articulos) getChild(listPosition, expandedListPosition)).setEnListaCompra(isEnLista);
+
+        if(isEnLista){
+            carrito.setImageResource(android.R.drawable.ic_delete);
+        }
+        else{
+            carrito.setImageResource(android.R.drawable.ic_input_add);
+        }
 
         carrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Integer integer = (Integer) carrito.getTag();
-                integer = integer == null ? 0 : integer;
+                //TODO: Arreglar este desastre
+                String a = LibraryActivity.articulos.get(LibraryActivity.articulos.indexOf(getChild(listPosition, expandedListPosition))).getClass().getSimpleName();
+                getChild(listPosition, expandedListPosition);
 
-                switch(integer) {
-                    case android.R.drawable.ic_delete:
-                        carrito.setImageResource(android.R.drawable.ic_input_add);
-                        carrito.setTag(android.R.drawable.ic_input_add);
-                        break;
-                    case android.R.drawable.ic_input_add:
-                        carrito.setImageResource(android.R.drawable.ic_delete);
-                        carrito.setTag(android.R.drawable.ic_delete);
-                        break;
+                boolean isEnLista = !((Articulos) getChild(listPosition, expandedListPosition)).isEnListaCompra();
+                ((Articulos) getChild(listPosition, expandedListPosition)).setEnListaCompra(isEnLista);
+
+                if(isEnLista){
+                    carrito.setImageResource(android.R.drawable.ic_delete);
                 }
-                //carrito.setImageResource(android.R.drawable.ic_delete);
+                else{
+                    carrito.setImageResource(android.R.drawable.ic_input_add);
+                }
+
+                int index = LibraryActivity.articulos.indexOf(getChild(listPosition, expandedListPosition));
+                LibraryActivity.articulos.set(index, getChild(listPosition, expandedListPosition));
+
+                a = LibraryActivity.articulos.get(index).getClass().getSimpleName();
+                Log.d("LIBRARY_CARRITO_SIZE", a);
+
+                Articulos art = (Articulos) LibraryActivity.articulos.get(index);
+                Log.d("LIBRARY_CARRITO_SIZE", String.valueOf(art.isEnListaCompra()));
             }
         });
 
@@ -106,6 +121,7 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         String listTitle = (String) getGroup(listPosition);
+        Log.d("GROUP_TITLE", listTitle);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -2,28 +2,23 @@ package com.example.admin1.libraryapp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ListasCategorias {
-    public static HashMap<String, List<String>> getData(ArrayList<Libro> listaLibros, ArrayList<Prensa> listaPeriodicos) {
-        HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
 
-        List<String> libro = new ArrayList<String>();
 
-        for (Libro art: listaLibros) {
-            libro.add(art.getNombre());
+    public static HashMap<String, ArrayList<Object>> getData(ArrayList<Object> articulos) {
+
+        HashMap<String, ArrayList<Object>> categorias = new HashMap<String, ArrayList<Object>>();
+
+        for (Object art:  articulos) {
+            Articulos articulo = (Articulos) art;
+            String tipo=art.getClass().getSimpleName();
+            if(!categorias.containsKey(tipo)){
+                categorias.put(tipo, new ArrayList<Object>());
+            }
+            categorias.get(tipo).add(articulo);
         }
 
-        List<String> periodico = new ArrayList<String>();
-        for (Prensa art: listaPeriodicos) {
-            periodico.add(art.getNombre());
-        }
-
-        List<String> revista = new ArrayList<String>();
-
-        expandableListDetail.put("LIBROS", libro);
-        expandableListDetail.put("PERIODICOS", periodico);
-        //expandableListDetail.put("REVISTAS", revista);
-        return expandableListDetail;
+        return categorias;
     }
 }

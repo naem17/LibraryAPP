@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,10 +18,9 @@ public class LibraryActivity extends AppCompatActivity {
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
-    HashMap<String, List<String>> expandableListDetail;
+    HashMap<String, ArrayList<Object>> expandableListDetail;
 
-    ArrayList<Libro> libros = new ArrayList<Libro>();
-    ArrayList<Prensa> periodicos = new ArrayList<Prensa>();
+    public static ArrayList<Object> articulos = new ArrayList<Object>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +30,7 @@ public class LibraryActivity extends AppCompatActivity {
         loadProducts();
 
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
-        expandableListDetail = ListasCategorias.getData(libros,periodicos);
+        expandableListDetail = ListasCategorias.getData(articulos);
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new AdaptadorLista(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
@@ -41,9 +38,9 @@ public class LibraryActivity extends AppCompatActivity {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
+                /*Toast.makeText(getApplicationContext(),
                         expandableListTitle.get(groupPosition) + " List Expanded.",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
             }
 
 
@@ -53,9 +50,9 @@ public class LibraryActivity extends AppCompatActivity {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
+                /*Toast.makeText(getApplicationContext(),
                         expandableListTitle.get(groupPosition) + " List Collapsed.",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
 
             }
         });
@@ -69,14 +66,14 @@ public class LibraryActivity extends AppCompatActivity {
 
                 Log.d("CARRITO CLICK EVENT", String.valueOf(id)+" --- "+String.valueOf(groupPosition)+" --- "+String.valueOf(childPosition));
                 expandableListAdapter.getChild(groupPosition,childPosition);
-                Toast.makeText(
+                /*Toast.makeText(
                         getApplicationContext(),
                         expandableListTitle.get(groupPosition)
                                 + " -> "
                                 + expandableListDetail.get(
                                 expandableListTitle.get(groupPosition)).get(
                                 childPosition)+ "  "+id, Toast.LENGTH_SHORT
-                ).show();
+                ).show();*/
                 return false;
             }
         });
@@ -96,13 +93,15 @@ public class LibraryActivity extends AppCompatActivity {
         
     private void loadProducts(){
 
-        libros.add(new Libro(10.0, "Primer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
-        libros.add(new Libro(10.0, "Segundo Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
-        libros.add(new Libro(10.0, "Tercer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
+        articulos.add(new Libro(10.0, "Primer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
+        articulos.add(new Libro(10.0, "Segundo Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
+        articulos.add(new Libro(10.0, "Tercer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
 
-        periodicos.add(new Prensa(10.0, "Primer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario", true, "De pruebas"));
-        periodicos.add(new Prensa(10.0, "Primer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario",true, "De pruebas"));
-        periodicos.add(new Prensa(10.0, "Primer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario",true, "De pruebas"));
+        articulos.add(new Prensa(10.0, "Primer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario", true, "De pruebas"));
+        articulos.add(new Prensa(10.0, "Segundo Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario",true, "De pruebas"));
+        articulos.add(new Prensa(10.0, "Tercer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario",true, "De pruebas"));
+
+
     }
 
 
