@@ -1,5 +1,6 @@
 package com.example.admin1.libraryapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -71,8 +72,12 @@ public class LibraryActivity extends AppCompatActivity {
                                 expandableListTitle.get(groupPosition)).get(
                                 childPosition)+ "  "+id, Toast.LENGTH_SHORT
                 ).show();*/
+                Intent intent = new Intent(LibraryActivity.this, ArticulosPagerActivity.class);
+                startActivity(intent);
+
                 return false;
             }
+
         });
 
     }
