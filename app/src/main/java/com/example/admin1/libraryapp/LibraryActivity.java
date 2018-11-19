@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import java.util.ArrayList;
@@ -19,8 +20,10 @@ public class LibraryActivity extends AppCompatActivity {
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
     HashMap<String, ArrayList<Object>> expandableListDetail;
+    private Button btnCarrito;
 
     public static ArrayList<Object> articulos = new ArrayList<Object>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,15 @@ public class LibraryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         loadProducts();
+
+        btnCarrito = (Button) findViewById(R.id.abrir_carrito);
+        btnCarrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LibraryActivity.this, CarritoActivity.class);
+                startActivity(intent);
+            }
+        });
 
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         expandableListDetail = ListasCategorias.getData(articulos);
@@ -45,6 +57,8 @@ public class LibraryActivity extends AppCompatActivity {
 
 
         });
+
+
 
         expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
 
