@@ -1,5 +1,6 @@
 package com.example.admin1.libraryapp;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import java.util.UUID;
 
 public class ArticulosPagerActivity extends AppCompatActivity{
 
-    private static final String EXTRA_ARTICULO_ID="com.example.admin1.criminalintent.crime_id";
+    private static final String EXTRA_ARTICULO_ID="com.example.admin1.libraryapp.articulo_id";
     private ViewPager mViewPager;
 
     public static Intent newIntent(Context packageContect, UUID articuloID){
