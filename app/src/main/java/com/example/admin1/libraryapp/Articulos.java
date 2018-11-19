@@ -1,6 +1,10 @@
 package com.example.admin1.libraryapp;
 
+import java.util.UUID;
+
 public class Articulos {
+
+    private UUID myId;
     private Double precio;
     private String nombre;
     private String fecha;
@@ -21,8 +25,12 @@ public class Articulos {
         this.idioma = idioma;
         this.genero = genero;
         this.enListaCompra = false;
+        myId=UUID.randomUUID();
     }
 
+    public UUID getMyId() {
+        return myId;
+    }
 
     public Double getPrecio() {
         return precio;
