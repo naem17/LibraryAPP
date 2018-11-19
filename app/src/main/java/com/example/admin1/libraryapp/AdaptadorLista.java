@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -90,6 +91,7 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
 
                 Articulos art = (Articulos) LibraryActivity.articulos.get(index);
                 Log.d("LIBRARY_CARRITO_SIZE", String.valueOf(art.isEnListaCompra()));
+
             }
         });
 
