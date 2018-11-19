@@ -2,6 +2,7 @@ package com.example.admin1.libraryapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -24,17 +26,22 @@ import java.util.UUID;
 public class ArticulosFragment extends Fragment {
 
     private TextView mTitle;
-    private Button mDateButton;
-    private CheckBox mSolvedCheckBox;
+    private TextView mFecha;
+    private TextView mGenero;
+    private TextView mIdioma;
+    private TextView mPrecio;
+    private ImageView mSeleccionado;
     private Articulos mArticulo;
 
     private static final String ARG_ARTICULO_ID="articulo_id";
 
+    private static final int REQUEST_DATE=0;
+
     //funcion que devuelve un CrimeFragment, con el Bundle relleno con el
     //Id del crimen
-    public static ArticulosFragment newInstance(UUID crimeId){
+    public static ArticulosFragment newInstance(UUID articuloId){
         Bundle argumentos = new Bundle();
-        argumentos.putSerializable(ARG_ARTICULO_ID,crimeId);
+        argumentos.putSerializable(ARG_ARTICULO_ID,articuloId);
 
         ArticulosFragment fragment = new ArticulosFragment();
         fragment.setArguments(argumentos);
@@ -49,12 +56,11 @@ public class ArticulosFragment extends Fragment {
 
         //Recuperamos el intent de la actividad que contienen el fragment,
         //y del intent recuperamos el EXTRA, que en este caso es el
-        // ID del crimen a mostrar
-        //UUID crimeId = (UUID) getActivity().getIntent().getSerializableExtra(
-        //        CrimeActivity.EXTRA_CRIME_ID);
         UUID articuloID = (UUID) getArguments().getSerializable(ARG_ARTICULO_ID);
-        //mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
-        mArticulo = (Articulos)LibraryActivity.articulos.get(0);
+        int i=0;
+        while(((Articulos)LibraryActivity.articulos.get(i)).getMyId()!=articuloID)
+            i++;
+        mArticulo = (Articulos)LibraryActivity.articulos.get(i);
     }
 
     //el metodo para los fragments para visualizar el Layout,
@@ -66,6 +72,22 @@ public class ArticulosFragment extends Fragment {
         mTitle = (TextView) v.findViewById(R.id.articulo_title);
         mTitle.setText(mArticulo.getNombre());
 
+        mFecha=(TextView) v.findViewById(R.id.articulo_fecha);
+        mFecha.setText((mArticulo.getFecha()));
+
+        mGenero=(TextView) v.findViewById(R.id.articulo_genero);
+        mGenero.setText(mArticulo.getGenero());
+
+        mIdioma=(TextView) v.findViewById((R.id.articulo_idioma));
+        mIdioma.setText(mArticulo.getIdioma());
+
+        mPrecio=(TextView) v.findViewById(R.id.articulo_precio);
+        mPrecio.setText(String.valueOf(mArticulo.getPrecio()));
+
+        mSeleccionado=v.findViewById(R.id.icono_carrito);
+        mSeleccionado.setImageResource(
+                mArticulo.isEnListaCompra()?android.R.drawable.ic_delete:android.R.drawable.ic_input_add
+        );
         return v;
     }
 

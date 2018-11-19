@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.List;
@@ -31,7 +32,8 @@ public class ArticulosPagerActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library_pager);
 
-        UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_ARTICULO_ID);
+        UUID articulosId = (UUID) getIntent().getSerializableExtra(EXTRA_ARTICULO_ID);
+        Log.d("MYBUG", "Mi UUID "+articulosId);
 
         mViewPager = (ViewPager) findViewById(R.id.articulo_view_pager);
 
@@ -39,9 +41,7 @@ public class ArticulosPagerActivity extends AppCompatActivity{
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
             public Fragment getItem(int i) {
-                LibraryActivity.articulos.get(i);
-                //return CrimeFragment.newInstance(crime.getMyId());
-                return null;
+                return ArticulosFragment.newInstance(((Articulos)LibraryActivity.articulos.get(i)).getMyId());
             }
 
             @Override
@@ -52,11 +52,12 @@ public class ArticulosPagerActivity extends AppCompatActivity{
 
         //Para posicionar el ViewPager en la posicion del ID que nos han
         //pasado como parametro en el EXTRA del Intent al llamar a la actividad
-        /*for(int i=0; i< LibraryActivity.articulos.size(); i++){
-            if(LibraryActivity.articulos.get(i).getMyId().equals(crimeId)){
+        for(int i=0; i< LibraryActivity.articulos.size(); i++){
+            Log.d("MYBUG", "UUID de "+i+" "+((Articulos)LibraryActivity.articulos.get(i)).getMyId());
+            if(((Articulos)LibraryActivity.articulos.get(i)).getMyId().equals(articulosId)){
                 mViewPager.setCurrentItem(i);
                 break;
             }
-        }*/
+        }
     }
 }
