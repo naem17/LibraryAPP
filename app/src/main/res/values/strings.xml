@@ -4,4 +4,11 @@
     <string name="articulo_details_label">Características:</string>
     <string name="articulo_precio_label">Precio:</string>
     <string name="carrito_label">Mis Articulos</string>
+    <string name="comprar_dialog_title">Realizar compra</string>
+    <string name="comprar_dialog_message">¿Estas seguro de que deseas realizar la compra?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="compra_realizada">Gracias por realizar tu compra</string>
+    <string name="compra_no_realizada">Que pena, otra vez sera</string>
+    <string name="btn_comprar">Comprar</string>
 </resources>
