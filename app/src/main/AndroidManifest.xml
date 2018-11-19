@@ -27,6 +27,7 @@
         </activity>
         <activity android:name=".LibraryActivity"></activity>
         <activity android:name=".ArticulosPagerActivity"></activity>
+        <activity android:name=".CarritoActivity"></activity>
 
     </application>
 
