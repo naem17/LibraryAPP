@@ -1,5 +1,6 @@
 package com.example.admin1.libraryapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -16,6 +17,7 @@ import java.util.UUID;
 
 public class LibraryActivity extends AppCompatActivity {
 
+    private static final String EXTRA_ARTICULO_ID="com.example.admin1.libraryapp.articulo_id";
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
@@ -25,13 +27,19 @@ public class LibraryActivity extends AppCompatActivity {
     public static ArrayList<Object> articulos = new ArrayList<Object>();
 
 
+    public static Intent newIntent(Context packageContect, UUID articuloID){
+        Intent intent = new Intent(packageContect, LibraryActivity.class);
+        intent.putExtra(EXTRA_ARTICULO_ID, articuloID);
+        return intent;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadProducts();
-
+        if(articulos.isEmpty()) {
+            loadProducts();
+        }
         btnCarrito = (Button) findViewById(R.id.abrir_carrito);
         btnCarrito.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +97,27 @@ public class LibraryActivity extends AppCompatActivity {
 
     }
 
-    private void loadProducts(){
+    @Override
+    protected void onResume() {
+        super.onResume();
+        expandableListDetail.clear();
+        expandableListDetail = ListasCategorias.getData(articulos);
+        expandableListAdapter = new AdaptadorLista(this, expandableListTitle, expandableListDetail);
+        expandableListView.setAdapter(expandableListAdapter);
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                /*Toast.makeText(getApplicationContext(),
+                        expandableListTitle.get(groupPosition) + " List Expanded.",
+                        Toast.LENGTH_SHORT).show();*/
+            }
+
+
+        });
+    }
+
+    private static void loadProducts(){
 
         articulos.add(new Libro(10.0, "Primer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
         articulos.add(new Libro(10.0, "Segundo Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));

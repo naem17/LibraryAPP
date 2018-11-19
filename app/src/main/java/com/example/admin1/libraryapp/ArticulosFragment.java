@@ -85,11 +85,18 @@ public class ArticulosFragment extends Fragment {
         mPrecio.setText(String.valueOf(mArticulo.getPrecio()));
 
         mSeleccionado=v.findViewById(R.id.icono_carrito);
-        mSeleccionado.setImageResource(
-                mArticulo.isEnListaCompra()?android.R.drawable.ic_delete:android.R.drawable.ic_input_add
-        );
+        mSeleccionado.setImageResource(mArticulo.isEnListaCompra()?android.R.drawable.ic_delete:android.R.drawable.ic_input_add);
+        mSeleccionado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mArticulo.setEnListaCompra(!mArticulo.isEnListaCompra());
+                mSeleccionado.setImageResource(mArticulo.isEnListaCompra()?android.R.drawable.ic_delete:android.R.drawable.ic_input_add);
+            }
+        });
+
         return v;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
