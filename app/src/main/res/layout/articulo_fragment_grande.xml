@@ -10,7 +10,7 @@
     android:id="@+id/articulo_fragment_grande">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/label_grande_title"
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="33dp"
@@ -26,11 +26,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/label_grande_title"
         tools:text="Ttitulo 1" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/label_grande_caracteristicas"
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         android:layout_height="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/label_grande_caracteristicas"
         tools:text="Fecha 1" />
 
     <TextView
@@ -72,7 +72,7 @@
         tools:text="Idioma 1" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/label_grande_precio"
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/label_grande_precio"
         app:layout_constraintVertical_bias="0.0"
         tools:text="Precio 1" />
 
@@ -104,7 +104,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="304dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/label_grande_caracteristicas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
