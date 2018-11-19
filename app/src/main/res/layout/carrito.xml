@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="#N" />
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/lista_articulos_carrito"
         android:layout_width="352dp"
         android:layout_height="436dp"
@@ -42,7 +42,9 @@
         app:layout_constraintBottom_toTopOf="@+id/carrito_comprar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_carrito"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/label_carrito">
+
+    </android.support.v7.widget.RecyclerView>
 
     <Button
         android:id="@+id/carrito_comprar"

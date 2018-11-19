@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class CarritoActivity extends AppCompatActivity{
 
     private TextView nArticulos;
+    private TextView mPrecio;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,17 +19,20 @@ public class CarritoActivity extends AppCompatActivity{
         setContentView(R.layout.carrito);
 
         nArticulos = (TextView) findViewById(R.id.numero_articulos);
+        mPrecio = (TextView) findViewById(R.id.carrito_precio_total);
 
         int total=0;
-
+        double precio=0;
         for(Object obj : LibraryActivity.articulos){
             Articulos art = (Articulos) obj;
             if(art.isEnListaCompra()){
                 total++;
+                precio+=art.getPrecio();
             }
         }
 
         nArticulos.setText(String.valueOf(total));
+        mPrecio.setText(String.valueOf(precio));
 
     }
 
