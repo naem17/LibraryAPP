@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LibraryActivity"></activity>
+        <activity android:name=".ArticulosPagerActivity"></activity>
 
     </application>
 
