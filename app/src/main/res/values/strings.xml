@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Knowledge Is Good (KIG)</string>
+    <string name="articulo_title_label">Título:</string>
+    <string name="articulo_details_label">Características:</string>
+    <string name="articulo_precio_label">Precio:</string>
 </resources>
