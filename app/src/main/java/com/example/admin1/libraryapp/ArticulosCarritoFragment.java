@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class ArticulosCarritoFragment extends Fragment {
 
-    private RecyclerView mArticulosView;
+    /*private RecyclerView mArticulosView;
     private CarritoAdapter mCarritoAdapter;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,5 +96,5 @@ public class ArticulosCarritoFragment extends Fragment {
     public void onResume() {
         super.onResume();
         updateUI();
-    }
+    }*/
 }

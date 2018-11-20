@@ -9,15 +9,42 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class CarritoActivity extends AppCompatActivity{
 
-    private TextView nArticulos;
-    private TextView mPrecio;
+    ExpandableListView expandableListView;
+    ExpandableListAdapter expandableListAdapter;
+    List<String> expandableListTitle;
+    HashMap<String, ArrayList<Object>> expandableListDetail;
+
+    public static int total=0;
+    public static double precio=0;
+    public static TextView nArticulos;
+    public static  TextView mPrecio;
     private Button mbtnComprar;
 
+
+    public static void actualizarCompra()
+    {
+
+        for(Object obj : LibraryActivity.articulos){
+            Articulos art = (Articulos) obj;
+            if(art.isEnListaCompra()){
+                total++;
+                precio+=art.getPrecio();
+            }
+        }
+        nArticulos.setText(String.valueOf(total));
+        mPrecio.setText(String.valueOf(precio));
+    }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +54,13 @@ public class CarritoActivity extends AppCompatActivity{
         mPrecio = (TextView) findViewById(R.id.carrito_precio_total);
         mbtnComprar = (Button) findViewById(R.id.carrito_comprar);
 
-        int total=0;
-        double precio=0;
-        for(Object obj : LibraryActivity.articulos){
-            Articulos art = (Articulos) obj;
-            if(art.isEnListaCompra()){
-                total++;
-                precio+=art.getPrecio();
-            }
-        }
+        actualizarCompra();
 
-        nArticulos.setText(String.valueOf(total));
-        mPrecio.setText(String.valueOf(precio));
+        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView2);
+        expandableListDetail = ListasCategorias.getDataCarrito(LibraryActivity.articulos);
+        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+        expandableListAdapter = new AdaptadorLista(this, expandableListTitle, expandableListDetail);
+        expandableListView.setAdapter(expandableListAdapter);
 
         mbtnComprar.setOnClickListener(new View.OnClickListener() {
             @Override

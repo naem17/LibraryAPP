@@ -119,13 +119,13 @@ public class LibraryActivity extends AppCompatActivity {
 
     private static void loadProducts(){
 
-        articulos.add(new Libro(10.0, "Primer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
-        articulos.add(new Libro(10.0, "Segundo Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
-        articulos.add(new Libro(10.0, "Tercer Libro", "12/11/18", "Pruebas", "Español","Terror", "Alguien", true, "De pruebas"));
+        articulos.add(new Libro(10.0, "Primer Libro", "12/11/18", "Nova", "Español","Terror", "James Garcia", true, "De pruebas"));
+        articulos.add(new Libro(12.0, "Segundo Libro", "2/04/16", "Gears", "Ingles","Comedia", "Katherine Nothinghill", true, "De pruebas"));
+        articulos.add(new Libro(24.0, "Tercer Libro", "22/12/17", "Planeta", "Español","Romance", "Orlando Perez", true, "De pruebas"));
 
-        articulos.add(new Prensa(10.0, "Primer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario", true, "De pruebas"));
-        articulos.add(new Prensa(10.0, "Segundo Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario",true, "De pruebas"));
-        articulos.add(new Prensa(10.0, "Tercer Periodico", "12/11/18", "Pruebas", "Español","Terror", "Mucho", "Diario",true, "De pruebas"));
+        articulos.add(new Prensa(3.0, "Primer Periodico", "1/1/10", "ABC", "Español","Noticas", "Nacional", "Diario", true, "De pruebas"));
+        articulos.add(new Prensa(2.5, "Segundo Periodico", "13/05/14", "El Pais", "Español","Noticias", "Nacional", "Diario",true, "De pruebas"));
+        articulos.add(new Prensa(2.0, "Tercer Periodico", "12/10/15", "NAIZ", "Euskera","Noticias", "Regional", "Diario",true, "De pruebas"));
 
 
     }

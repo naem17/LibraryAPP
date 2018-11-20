@@ -82,7 +82,7 @@ public class AdaptadorLista extends BaseExpandableListAdapter {
                 else{
                     carrito.setImageResource(android.R.drawable.ic_input_add);
                 }
-
+                
                 int index = LibraryActivity.articulos.indexOf(getChild(listPosition, expandedListPosition));
                 LibraryActivity.articulos.set(index, getChild(listPosition, expandedListPosition));
 
